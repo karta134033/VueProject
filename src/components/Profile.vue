@@ -89,9 +89,9 @@ export default {
         var deepWater = document.getElementById("deepWater").getBoundingClientRect();
         this.displayFirst = this.animateOut
         this.displaySecond = this.animateOut
-        this.displayThird = this.animateOut
+				this.displayThird = this.animateOut
         this.blackFactor = this.blackFactor < 0.01 ? 0.01 : this.blackFactor
-        if (deepWater.top <= 0){
+        if (deepWater.top <= 0){   // 最下方漸層的部分
           if ((document.body.getBoundingClientRect()).top > this.scrollPos) {
             console.log('data-scroll-direction', 'UP', 'counter: ', this.counter, 'this.blackFactor', this.blackFactor);
             this.counter--
@@ -112,7 +112,7 @@ export default {
         this.displaySecond = this.animateOut
         this.displayThird = this.animateIn
         if (thirdRect.top <= 0){
-          thirdSection.classList.add("sticky");
+          thirdSection.classList.add("sticky")
         }
         return;
       } 
@@ -181,9 +181,9 @@ body, html{
   }
 }
 .sticky {
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  width: 100%;
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	width: 100%;
 }
 </style>
