@@ -104,9 +104,9 @@ export default {
             this.blackFactor = this.blackFactor < 0.85 ? this.blackFactor + 0.02 : this.blackFactor
             this.fadeInBlack = 'background-color: rgba(0, 0, 0,' + this.blackFactor +');'
           }
-          this.scrollPos = (document.body.getBoundingClientRect()).top;
+          this.scrollPos = (document.body.getBoundingClientRect()).top
         }
-        return;
+        return
       }
       if (window.scrollY > distanceOfSection*5) {
         this.displaySecond = this.animateOut
@@ -114,25 +114,25 @@ export default {
         if (thirdRect.top <= 0){
           thirdSection.classList.add("sticky")
         }
-        return;
+        return
       } 
       if (window.scrollY > distanceOfSection*2) {
         this.displayFirst = this.animateOut
         this.displaySecond = this.animateIn
-        return;
+        return
       } 
       if (window.scrollY > distanceOfSection) {
         this.displayFirst = this.animateIn
         this.displaySecond = this.animateOut
-        return;
+        return
       }
     }
   },
   created () {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll)
   },
   destroyed () {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>

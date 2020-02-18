@@ -6,43 +6,48 @@
       color="teal"
       class="sticky-bottom"
     >
-      <v-btn to='/profile'>
+      <v-btn @click="scrollToTop" to='/profile'>
         <span>Profile</span>
         <v-icon>mdi-file-document</v-icon>
       </v-btn>
 
-      <v-btn to='/'>
+      <v-btn @click="scrollToTop" to='/'>
         <span>Home</span>
         <v-icon medium>mdi-home</v-icon>
       </v-btn>
 
-      <v-btn>
-        <span>Nearby</span>
-        <v-icon>mdi-map-marker</v-icon>
+      <v-btn @click="scrollToTop" to='/slides'>
+        <span>Slides</span>
+        <v-icon>mdi-file-powerpoint</v-icon>
       </v-btn>
     </v-bottom-navigation>
   </div>
 </template>
 <script>
-  export default {
-    name: 'BottomNav',
-    data () {
-      return {
-        activeBtn: 1,
-      }
+export default {
+  name: 'BottomNav',
+  data () {
+    return {
+      activeBtn: 1,
+    }
+  },
+  methods: {
+    scrollToTop () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     },
-    methods: {
     handleScroll () {
-			if ((document.body.getBoundingClientRect()).top > this.scrollPos) {  // 用來觸發下方的Nav
-        document.getElementById('bottomNav').classList.add("animate-in")
-        document.getElementById('bottomNav').classList.remove("animate-out")
+      const bottomNav = document.getElementById('bottomNav')
+      if ((document.body.getBoundingClientRect()).top > this.scrollPos) {  //代表向上滑動
+        bottomNav.classList.add('animate-in')
+        bottomNav.classList.remove('animate-out')
 
-			}
-			else {
-        document.getElementById('bottomNav').classList.add("animate-out")
-        document.getElementById('bottomNav').classList.remove("animate-in")
-			}
-      this.scrollPos = (document.body.getBoundingClientRect()).top;
+      }
+      else {
+        bottomNav.classList.add('animate-out')
+        bottomNav.classList.remove('animate-in')
+      }
+      console.log('document.body.getBoundingClientRect()).top', (document.body.getBoundingClientRect()).top, 'scrollPos', this.scrollPos)
+      this.scrollPos = (document.body.getBoundingClientRect()).top
     }
   },
   created () {
@@ -51,7 +56,7 @@
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll);
   }
-  }
+}
 </script>
 <style scoped>
 .sticky-bottom {
@@ -59,21 +64,5 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-}
-.animate-in {
-  visibility: visible;
-  opacity: 1;
-  -webkit-transition: opacity 2s ease-out;
-  -moz-transition: opacity 2s ease-out;
-  -o-transition: opacity 2s ease-out;
-  transition: opacity 2s ease-out;
-}
-.animate-out {
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition: opacity 2s;
-  -moz-transition: opacity 2s;
-  -o-transition: opacity 2s;
-  transition: opacity 2s;
 }
 </style>

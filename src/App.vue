@@ -16,13 +16,38 @@ export default {
 }
 </script>
 <style>
-body, html{
+body, html {
   background-color: black;
   background-image: url('./assets/beach.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-}  
+}
+#app {
+  height: 100%;
+}
+.div-align-middle:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle ;
+  height: 100%;
+}
+.animate-in {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+}
+.animate-out {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 2s ease-out;
+  -moz-transition: opacity 2s ease-out;
+  -o-transition: opacity 2s ease-out;
+  transition: opacity 2s ease-out;
+}
 </style>
 
