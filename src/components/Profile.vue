@@ -29,6 +29,7 @@
       </section>
     </div>
     <div style="height:2000px"></div>
+    <div id="thirdSectionTrigger"></div>
     <div 
       class="section-part row-content"
       id="thirdSection"
@@ -36,8 +37,8 @@
       <div
         class="left"
         data-aos="fade-up-right"
-        data-aos-offset="500"
-        data-aos-duration="0"
+        data-aos-duration="500"
+        data-aos-anchor="#thirdSectionTrigger"
         > 
         <div style="margin-top:-500px">
           <h1> left</h1> 
@@ -47,6 +48,7 @@
       <div
         class="right"
         data-aos="fade-down-left"
+        data-aos-anchor="#thirdSectionTrigger"
         data-aos-offset="500"
         data-aos-duration="1500"
         >
@@ -66,8 +68,8 @@ export default {
       counter: 0,
       scrollPos: 0,
       displayFirst: '',
-      displaySecond: 'display:none;',
-      displayThird: 'opacity:0;',
+      displaySecond: 'opacity:0;',
+      displayThird: '',
       animateIn:
         'opacity:1;\
         transition-property:opacity;\
@@ -85,7 +87,7 @@ export default {
       var distanceOfSection = 500;
       var thirdSection = document.getElementById("thirdSection");
       var thirdRect = thirdSection.getBoundingClientRect();
-      if (window.scrollY > distanceOfSection*7) {
+      if (window.scrollY > distanceOfSection*9) {
         var deepWater = document.getElementById("deepWater").getBoundingClientRect();
         this.displayFirst = this.animateOut
         this.displaySecond = this.animateOut
@@ -109,14 +111,17 @@ export default {
         return
       }
       if (window.scrollY > distanceOfSection*5) {
+        console.log('distanceOfSection*5')
         this.displaySecond = this.animateOut
         this.displayThird = this.animateIn
         if (thirdRect.top <= 0){
           thirdSection.classList.add("sticky")
         }
         return
-      } 
+      }
+      if (window.scrollY > distanceOfSection*3) return  //預防轉場問題 
       if (window.scrollY > distanceOfSection*2) {
+        console.log('distanceOfSection*2')
         this.displayFirst = this.animateOut
         this.displaySecond = this.animateIn
         return
