@@ -37,7 +37,6 @@
 			</v-container>
 			<v-parallax
 				:src="require('@/assets/jet.jpg')"
-				style="overflow-y:scroll;"
 				height="1000"
 				data-aos="zoom-in"
 				data-aos-duration="1000"
