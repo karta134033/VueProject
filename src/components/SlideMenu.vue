@@ -3,9 +3,9 @@
 		data-aos="zoom-in-right">
 		<v-app 
 			data-aos="zoom-in-right" 
-			style="background-color:rgba(250, 250, 250, 0.65);"
+			style="background-color:rgba(250, 250, 250, 1);"
 		>
-			<div style="height:300px"></div>
+			<div class="header"></div>
 			<v-container fluid id="selectBar">
 				<v-row>
 					<v-col cols="12">
@@ -49,7 +49,7 @@
 					<v-flex 
 						xl 
 						style="text-align:left; margin-left:20px"
-						data-aos="fade-right"
+						data-aos="fade-left"
 						data-aos-duration="2000"
 					>
 						<v-col cols="12">
@@ -76,7 +76,7 @@
 					<v-flex 
 						xl 
 						style="text-align:right; margin-right:20px"
-						data-aos="fade-left"
+						data-aos="fade-right"
 						data-aos-duration="3000"
 					>
 						<v-col cols="12">
@@ -161,3 +161,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+.header {
+	height:300px; 
+	background-color:rgb(1, 33, 58);
+}
+</style>
