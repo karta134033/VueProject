@@ -1,40 +1,42 @@
 <template>
-	<div 
-		data-aos="zoom-in-right">
+	<div>
 		<v-app 
 			data-aos="zoom-in-right" 
 			style="background-color:rgba(250, 250, 250, 1);"
 		>
-			<div class="header"></div>
-			<v-container fluid id="selectBar">
-				<v-row>
-					<v-col cols="12">
-						<v-row justify="center">
-							<v-col
-								cols="6"
-								md="2"
-							>
-								<v-select
-									v-model="alignment"
-									:items="alignmentsAvailable"
-									label="Align"
-								></v-select>
-							</v-col>
+			<div class="header">
+				<v-container 
+					fluid id="selectBar" 
+					style="margin-top: 20%">
+					<v-row>
+						<v-col cols="12">
+							<v-row justify="center">
+								<v-col
+									cols="6"
+									md="2"
+								>
+									<v-select
+										v-model="alignment"
+										:items="alignmentsAvailable"
+										label="Align"
+									></v-select>
+								</v-col>
 
-							<v-col
-								cols="6"
-								md="2"
-							>
-								<v-select
-									v-model="justify"
-									:items="justifyAvailable"
-									label="Justify"
-								></v-select>
-							</v-col>
-						</v-row>
-					</v-col>
-				</v-row>
-			</v-container>
+								<v-col
+									cols="6"
+									md="2"
+								>
+									<v-select
+										v-model="justify"
+										:items="justifyAvailable"
+										label="Justify"
+									></v-select>
+								</v-col>
+							</v-row>
+						</v-col>
+					</v-row>
+				</v-container>
+			</div>
 			<v-parallax
 				:src="require('@/assets/jet.jpg')"
 				height="1000"
@@ -64,12 +66,12 @@
 							>
 							</iframe>
 						</v-col>
-						<v-col cols="12">
+						<v-col cols="12" style="visibility:hidden">
 							<v-btn
 								color="blue"
 								dark
 							>
-								Open v-model
+								排版用
 							</v-btn>
 						</v-col>
 					</v-flex>
@@ -92,7 +94,7 @@
 							<v-btn
 								color="blue"
 								dark
-								@click="zoomIn()"
+								@click="zoom()"
 							>
 								放大
 							</v-btn>
@@ -100,12 +102,35 @@
 					</v-flex>
 				</v-layout>
 			</v-parallax>
-			<div style="height:300px"> </div>
+			<div v-if="buttonStatus === false">
+				<iframe 
+					id="pdf-iframe" 
+					:src="pdfLink" 
+					width="100%" 
+					height="100%"
+					allowfullscreen="true"
+					style="z-index:0; position: fixed; top: 0;"
+				>
+				</iframe>
+			</div>
 		</v-app>
+		<div class="sticky" v-if="buttonStatus === false">
+			<v-btn
+				style="background-color:#2196F3; color:white;"
+				@click="zoom()"
+			>
+				縮小
+			</v-btn>
+		</div>
+		<Footer/>
 	</div>
 </template>
 <script>
+import Footer from './Footer.vue'
 export default {
+	components: {
+    Footer
+  },
 	data () {
 		return {
 			alignmentsAvailable: [
@@ -131,7 +156,8 @@ export default {
 			},
 			iframeWidth : 0,
 			iframeHeight : 0,
-			pdfLink : require('../assets/pdf/ElmPDF.pdf')     // tried with relative path
+			pdfLink : require('../assets/pdf/ElmPDF.pdf'),     // tried with relative path
+			buttonStatus: true
 		}
 	},
 	created() {
@@ -154,16 +180,20 @@ export default {
 		},
 		handleScroll () {
 		},
-		zoomIn(){
-			// const bottomNav = document.getElementById('pdf-iframe')
-			// this.iframeWidth = 1400;
+		zoom(){
+			this.buttonStatus = !this.buttonStatus
 		}
   }
 }
 </script>
 <style scoped>
 .header {
-	height:300px; 
+	background-image: url('../assets/cloud.jpg');
+	background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+	height:600px; 
 	background-color:rgb(1, 33, 58);
 }
 </style>

@@ -36,18 +36,24 @@ body, html {
 .animate-in {
   visibility: visible;
   opacity: 1;
-  -webkit-transition: opacity 2s ease-out;
-  -moz-transition: opacity 2s ease-out;
-  -o-transition: opacity 2s ease-out;
-  transition: opacity 2s ease-out;
+  -webkit-transition: opacity 1s ease-out;
+  -moz-transition: opacity 1s ease-out;
+  -o-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
 }
 .animate-out {
   visibility: hidden;
   opacity: 0;
-  -webkit-transition: opacity 2s ease-out;
-  -moz-transition: opacity 2s ease-out;
-  -o-transition: opacity 2s ease-out;
-  transition: opacity 2s ease-out;
+  -webkit-transition: opacity 1s ease-out;
+  -moz-transition: opacity 1s ease-out;
+  -o-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
+}
+.sticky {
+	z-index: 1;
+	position: fixed;
+	top: 0;
+	width: 100%;
 }
 </style>
 
