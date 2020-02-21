@@ -7,7 +7,7 @@
 			<div class="header">
 				<v-container 
 					fluid id="selectBar" 
-					style="margin-top: 20%">
+					style="margin-top: 1%">
 					<v-row>
 						<v-col cols="12">
 							<v-row justify="center">
@@ -38,7 +38,7 @@
 				</v-container>
 			</div>
 			<v-parallax
-				:src="require('@/assets/jet.jpg')"
+				:src="require('@/assets/mountain.jpg')"
 				height="1000"
 				data-aos="zoom-in"
 				data-aos-duration="1000"
@@ -188,12 +188,7 @@ export default {
 </script>
 <style scoped>
 .header {
-	background-image: url('../assets/cloud.jpg');
-	background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-	height:600px; 
-	background-color:rgb(1, 33, 58);
+	height:150px; 
+	background-color:rgb(255, 255, 255);
 }
 </style>
