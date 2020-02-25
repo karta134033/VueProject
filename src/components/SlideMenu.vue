@@ -5,9 +5,7 @@
 			style="background-color:rgba(250, 250, 250, 1);"
 		>
 			<div class="header">
-				<v-container 
-					fluid id="selectBar" 
-					style="margin-top: 1%">
+				<v-container fluid id="selectBar">
 					<v-row>
 						<v-col cols="12">
 							<v-row justify="center">
@@ -15,10 +13,15 @@
 									cols="6"
 									md="2"
 								>
+									<v-icon>mdi-folder-open</v-icon>
 									<v-select
-										v-model="alignment"
-										:items="alignmentsAvailable"
-										label="Align"
+										v-model="topic"
+										:items="topicSelected"
+										item-text="topic"
+										label="Topic"
+										@change = "topicChanged()"
+										dense
+										solo
 									></v-select>
 								</v-col>
 
@@ -26,10 +29,15 @@
 									cols="6"
 									md="2"
 								>
+									<v-icon>mdi-cards</v-icon>
 									<v-select
-										v-model="justify"
-										:items="justifyAvailable"
-										label="Justify"
+										v-model="data"
+										:items="topicData"
+										item-text="data"
+										label="論文"
+										@change = "pdfpptChanged(data)"
+										dense
+										solo
 									></v-select>
 								</v-col>
 							</v-row>
@@ -56,8 +64,8 @@
 					>
 						<v-col cols="12">
 							<iframe 
-								src="https://docs.google.com/presentation/d/e/2PACX-1vQEPaLJJYg-QGOpVuB5oHn31Fz6LQe25dSUTM3Pl5Zn0kI3Fy7iPBrjdGrfQwJL94GxxM7gKTq0CoKl/embed?start=false&loop=false&delayms=3000" 
 								frameborder="0"
+								:src="pptLink"
 								:width="iframeWidth" 
 								:height="iframeHeight"
 								allowfullscreen="true" 
@@ -127,36 +135,27 @@
 </template>
 <script>
 import Footer from './Footer.vue'
+import { SlideConfig } from '../config/SlideMenuConfig.js'
 export default {
 	components: {
-    Footer
-  },
+		Footer
+	},
 	data () {
 		return {
-			alignmentsAvailable: [
-        'start',
-        'center',
-        'end',
-        'baseline',
-        'stretch',
-      ],
-      alignment: 'center',
-      dense: false,
-      justifyAvailable: [
-        'start',
-        'center',
-        'end',
-        'space-around',
-        'space-between',
-      ],
-      justify: 'center',
+			// pdf ppt 預設值開始
+			topicSelected: SlideConfig['topicSelected'],  
+			topicData: SlideConfig['topicSelected'][0]['topicData'],
+			topic: SlideConfig['topicSelected'][0]['topic'],
+			data:  SlideConfig['topicSelected'][0]['topicData'][0],
+			// pdf ppt 預設值結束
 			window: {
 				width: 0,
 				height: 0
 			},
 			iframeWidth : 0,
 			iframeHeight : 0,
-			pdfLink : require('../assets/pdf/ElmPDF.pdf'),     // tried with relative path
+			pdfLink : this.pdfpptChanged('')['pdf'],
+			pptLink : this.pdfpptChanged('')['ppt'],
 			buttonStatus: true
 		}
 	},
@@ -164,14 +163,14 @@ export default {
 		window.addEventListener('resize', this.handleResize)
 		window.addEventListener('scroll', this.handleScroll)
 		this.handleResize();
-		
-  },
-  destroyed() {
+
+	},
+	destroyed() {
 		window.removeEventListener('resize', this.handleResize)
 		window.removeEventListener('scroll', this.handleScroll)
-  },
-  methods: {
-    handleResize() {
+	},
+	methods: {
+		handleResize() {
 			this.window.width = window.innerWidth;
 			this.window.height = window.innerHeight;
 			this.iframeWidth = this.window.width > 1000 ? this.window.width/2 - this.window.width/10 : this.window.width;
@@ -182,13 +181,43 @@ export default {
 		},
 		zoom(){
 			this.buttonStatus = !this.buttonStatus
-		}
-  }
+		},
+		topicChanged(){
+			console.log('topic: ', this.topic)
+			console.log('pdfLinkHeader', this.pdfLinkHeader)
+			for(const ts of this.topicSelected){
+				if (ts['topic'] === this.topic){
+					this.topicData = ts['topicData']
+					console.log('topicData', this.topicData, this.pdfLinkHeader)
+					break;
+				}
+			}
+		},
+		pdfpptChanged(dataSelected){
+			if (this.topicData){
+				for(const td of this.topicData){
+					if (td === dataSelected && SlideConfig['pptAndPdf'][dataSelected]) {
+						this.pdfLink = require('../assets/pdf/' + SlideConfig['pptAndPdf'][dataSelected]['pdf'])
+						this.pptLink = SlideConfig['pptAndPdf'][dataSelected]['ppt']
+						return {
+							'pdf' : require('../assets/pdf/' + SlideConfig['pptAndPdf'][dataSelected]['pdf']),
+							'ppt' : SlideConfig['pptAndPdf'][dataSelected]['ppt']
+						}
+					}
+				}
+				alert('論文尚未上傳')
+			}
+			return {  // 預設的ppt pdf
+				'pdf' : require('../assets/pdf/' + SlideConfig['pptAndPdf']['單調性極限學習機模型於單類別分類之研究']['pdf']),
+				'ppt' : SlideConfig['pptAndPdf']['單調性極限學習機模型於單類別分類之研究']['ppt']
+			}
+		}		
+	}
 }
 </script>
 <style scoped>
 .header {
-	height:150px; 
+	height:120px; 
 	background-color:rgb(255, 255, 255);
 }
 </style>

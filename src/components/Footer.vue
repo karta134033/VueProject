@@ -1,5 +1,5 @@
 <template>
-  <div style="height:250px; overflow:hidden;"> 
+  <div style="height:200px; overflow:hidden;"> 
     <v-app style="background-color:black;">
       <v-footer
         class="text-end"
@@ -12,15 +12,13 @@
           tile
         >
           <v-card-title class="teal">
-            <strong class="subheading">Get connected with us on social networks!</strong>
-            <v-icon>mdi-file-document</v-icon>
+            <strong class="subheading"></strong>
           </v-card-title>
           <v-card-title class="teal">
-            <strong class="subheading">Get connected with us on social networks!</strong>
-            <v-icon>mdi-file-document</v-icon>
+            <strong class="subheading"></strong>
           </v-card-title>
           <v-card-title class="teal">
-            <strong class="subheading">Get connected with us on social networks!</strong>
+            <strong class="subheading">維修中...</strong>
             <v-icon>mdi-file-document</v-icon>
           </v-card-title>
 
