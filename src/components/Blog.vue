@@ -48,7 +48,7 @@
                 <v-list-item
                   v-for="(ctst, i) in ct.subTitle"
                   :key="i"
-                  @click="changeContent(ctst.src)"
+                  @click="changeContent(ct.title, ctst.src)"
                 >
                   <v-list-item-title v-text="ctst.title"></v-list-item-title>
                 </v-list-item>
@@ -74,7 +74,11 @@ export default {
     }
   },
   methods: {
-    changeContent(src) {
+    changeContent(title, src) {
+      if(title === 'News'){
+        window.open(src);
+        return
+      }
       this.iframeSrc = src;
     },
     forceClick(id) {

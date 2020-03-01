@@ -28,7 +28,7 @@ export const BlogConfig = [
   {
     title : 'News',
     subTitle : [
-      // { title: 'IT邦幫忙', src: 'https://ithelp.ithome.com.tw/?tab=hot'},
+      { title: 'IT邦幫忙', src: 'https://ithelp.ithome.com.tw/?tab=hot'},
       { title: '科技橘報', src: 'https://buzzorange.com/techorange/'},
       { title: 'Digitimes', src: 'https://www.digitimes.com.tw/tech/'},
     ]
