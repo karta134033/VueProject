@@ -46,7 +46,7 @@
 				</v-container>
 			</div>
 			<v-parallax
-				:src="require('@/assets/mountain.jpg')"
+				:src="require('@/assets/jet.jpg')"
 				height="1000"
 				data-aos="zoom-in"
 				data-aos-duration="1000"

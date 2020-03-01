@@ -1,5 +1,5 @@
 <template>
-  <div id="pinContainer">
+  <div id="personalInfo">
     <div 
       class="section-part sticky"
       id="firstSection"
@@ -8,7 +8,6 @@
         class="panel" 
         style="background:rgba(0, 0, 0, 0.2)" 
         data-aos="flip-down"
-        data-aos-offset="50"
         data-aos-duration="1000"
         >
         <b>ONE</b>
@@ -156,7 +155,7 @@ export default {
 }
 body, html{
   @include bordered();
-  #pinContainer {
+  #personalInfo {
      @include bordered();
     .section-part {
      @include bordered();
