@@ -33,14 +33,16 @@
               v-for="(ct, i) in content"
               :key="i"
               @mouseenter="forceClick(ct.title)"
-              @mouseleave="forceClick(ct.title)"
             >
               <v-list-group
+                dark
                 sub-group
                 no-action
-                color="primary"
               >
                 <template v-slot:activator>
+                  <v-list-item-icon class="pr-2">
+                    <img :src="getImgUrl(ct.titleImg)" height="30px" width="30px">
+                  </v-list-item-icon>
                   <v-list-item-content :id="ct.title">
                     <v-list-item-title>{{ct.title}}</v-list-item-title>
                   </v-list-item-content>
@@ -85,6 +87,9 @@ export default {
       const tar = document.getElementById(id)
       tar.click();
       console.log('force click')
+    },
+    getImgUrl(src) {
+      return require('@/assets/blog_nav' + src)
     }
   },
   created() {
