@@ -12,7 +12,19 @@ export const BlogConfig = [
       { title: 'Docker', src: 'https://hackmd.io/@karta134033/BJJS6RmfH'},
       { title: 'LaraDock', src: 'https://hackmd.io/@karta134033/ryUydy2Gr'},
     ]
-  },   
+  },
+  {
+    title: 'Framework',
+    subTitle : [
+      { title: 'Laravel Scenario', src: 'https://hackmd.io/@karta134033/rJSr54VGr'},
+    ]
+  },
+  {
+    title: 'Spark',
+    subTitle : [
+      { title: 'Scenario', src: 'https://hackmd.io/@karta134033/Bkic3wQAr'},
+    ]
+  },    
   {
     title : 'News',
     subTitle : [

@@ -3,6 +3,7 @@
     <v-bottom-navigation
       :value="activeBtn"
       grow
+      shift
       class="sticky-bottom"
     >
       <v-btn @click="zoomInBlog('/profile')">
