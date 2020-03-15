@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<v-app 
-			data-aos="zoom-in-right" 
 			style="background-color:rgba(250, 250, 250, 1);"
+			class="animate-in"
 		>
 			<div class="header">
 				<v-container fluid id="selectBar">
@@ -47,9 +47,7 @@
 			</div>
 			<v-parallax
 				:src="require('@/assets/jet.jpg')"
-				height="1000"
-				data-aos="zoom-in"
-				data-aos-duration="1000"
+				height="1000"	
 			>
 				<v-layout
 					align-center
@@ -60,7 +58,7 @@
 						xl 
 						style="text-align:left; margin-left:20px"
 						data-aos="fade-left"
-						data-aos-duration="2000"
+						data-aos-duration="1500"
 					>
 						<v-col cols="12">
 							<iframe 
@@ -87,7 +85,7 @@
 						xl 
 						style="text-align:right; margin-right:20px"
 						data-aos="fade-right"
-						data-aos-duration="3000"
+						data-aos-duration="2500"
 					>
 						<v-col cols="12">
 							<iframe 
@@ -140,6 +138,7 @@ export default {
 	components: {
 		Footer
 	},
+	props: ['preloadImg'],
 	data () {
 		return {
 			// pdf ppt 預設值開始
@@ -211,7 +210,7 @@ export default {
 				'pdf' : require('../assets/pdf/' + SlideConfig['pptAndPdf']['單調性極限學習機模型於單類別分類之研究']['pdf']),
 				'ppt' : SlideConfig['pptAndPdf']['單調性極限學習機模型於單類別分類之研究']['ppt']
 			}
-		}		
+		},
 	}
 }
 </script>

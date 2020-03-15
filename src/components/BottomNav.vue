@@ -53,8 +53,8 @@ export default {
         leftContent.classList.add('ease-out-left');
         rightNav.classList.add('ease-out-right');
         await sleep(sec);
-        blog.classList.add('zoom-in-ease-out');
-        await sleep(sec);
+        // blog.classList.add('zoom-in-ease-out');
+        // await sleep(sec);
         self.$router.push({ path: routingPath });
       }
     },
@@ -69,7 +69,7 @@ export default {
         bottomNav.classList.add('animate-out');
         bottomNav.classList.remove('animate-in');
       }
-      console.log('document.body.getBoundingClientRect()).top', (document.body.getBoundingClientRect()).top, 'scrollPos', this.scrollPos)
+      // console.log('document.body.getBoundingClientRect()).top', (document.body.getBoundingClientRect()).top, 'scrollPos', this.scrollPos)
       this.scrollPos = (document.body.getBoundingClientRect()).top;
     }
   },
@@ -90,6 +90,6 @@ span{
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 </style>

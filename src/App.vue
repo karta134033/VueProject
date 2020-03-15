@@ -10,6 +10,11 @@ import BottomNav from './components/BottomNav.vue'
 import '@/assets/css/style.css'
 export default {
   name: 'App',
+  date() {
+    return {
+      preloadImg: Image()
+    }
+  },
   components: {
     BottomNav,
   },

@@ -2,29 +2,26 @@
   <div id="personalInfo">
     <div 
       class="section-part sticky"
-      id="firstSection"
       :style="displayFirst">
       <section 
         class="panel" 
         style="background:rgba(0, 0, 0, 0.2)" 
-        data-aos="flip-down"
-        data-aos-duration="1000"
-        >
-        <b>ONE</b>
+      >
+        <part1></part1>
       </section>
     </div>
     <div style="height:1000px"></div>
-    <div 
+    <div
       class="section-part sticky"
       :style="displaySecond">
       <section 
         class="panel gray" 
-        style="background:rgba(0, 0, 0, 0.5)" 
+        style="background:rgba(0, 0, 0, 0.5);" 
         data-aos="zoom-in-right"
         data-aos-offset="70"
         data-aos-duration="500"
-        >
-        <b>TWO</b>
+      >
+        <part2></part2>  
       </section>
     </div>
     <div style="height:2000px"></div>
@@ -38,7 +35,7 @@
         data-aos="fade-up-right"
         data-aos-duration="500"
         data-aos-anchor="#thirdSectionTrigger"
-        > 
+      > 
         <div style="margin-top:-500px">
           <h1> left</h1> 
           <h3 style="margin-top: 100px">A Wisconsin basement gave birth to one of the most influential narratives of our times – Dungeons and Dragons – sending its creator, E. Gary Gygax, on a strange and perilous journey of his own.</h3>
@@ -62,10 +59,16 @@
 
 <script>
 import Footer from './Footer.vue'
+import part1 from './profile/part1'
+import part2 from './profile/part2'
+
+
 export default {
   name: 'App',
   components: {
-    Footer
+    Footer,
+    part1,
+    part2
   },
   data(){
     return {
@@ -80,6 +83,7 @@ export default {
         transition-duration:1s;',
       animateOut:
         'opacity:0;\
+        z-index:-1;\
         transition-property:opacity;\
         transition-duration:1s;',
       blackFactor: 0.01,
@@ -99,13 +103,13 @@ export default {
         this.blackFactor = this.blackFactor < 0.01 ? 0.01 : this.blackFactor
         if (deepWater.top <= 0){   // 最下方漸層的部分
           if ((document.body.getBoundingClientRect()).top > this.scrollPos) {
-            console.log('data-scroll-direction', 'UP', 'counter: ', this.counter, 'this.blackFactor', this.blackFactor);
+            // console.log('data-scroll-direction', 'UP', 'counter: ', this.counter, 'this.blackFactor', this.blackFactor);
             this.counter--
             this.blackFactor = this.blackFactor > 0.01 ? this.blackFactor - 0.03 : this.blackFactor
             this.fadeInBlack = 'background-color: rgba(0, 0, 0,' + this.blackFactor +');'
           }
           else {
-            console.log('data-scroll-direction', 'DOWN', 'counter: ', this.counter, 'this.blackFactor', this.blackFactor);
+            // console.log('data-scroll-direction', 'DOWN', 'counter: ', this.counter, 'this.blackFactor', this.blackFactor);
             this.counter++
             this.blackFactor = this.blackFactor < 0.9 ? this.blackFactor + 0.02 : this.blackFactor
             this.fadeInBlack = 'background-color: rgba(0, 0, 0,' + this.blackFactor +');'
@@ -126,6 +130,7 @@ export default {
       if (window.scrollY > distanceOfSection*3) return  //預防轉場問題 
       if (window.scrollY > distanceOfSection*2) {
         console.log('distanceOfSection*2')
+        this.displayThird = this.animateOut
         this.displayFirst = this.animateOut
         this.displaySecond = this.animateIn
         return

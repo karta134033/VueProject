@@ -103,12 +103,12 @@ export default {
 <style>
 #blog {
     height: 100%;
-    background-color: black;
+    /* background-color: black;
     background-image: url('../assets/desktop.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-position: center;
+    background-position: center; */
     overflow: hidden;  /*隱藏捲動的bar*/
 }
 .zoom-in-ease-out {
